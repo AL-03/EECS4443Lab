@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class Validation {
 	
 	HashMap<String, String> registeredUsers = new HashMap<>();
-    BufferedReader bf = new BufferedReader(context.getAssets().open("credentials.txt")); 
+    BufferedReader bf = new BufferedReader(new File("app/src/main/assets/credentials.txt"); 
     
     public Validation()
     {
@@ -28,3 +28,4 @@ public class Validation {
 	}
 
 }
+
