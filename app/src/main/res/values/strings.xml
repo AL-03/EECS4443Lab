@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">EECS4443Lab</string>
+    <!-- Welcome message text -->
+    <string name="welcome_msg">Welcome, %s!</string>
 </resources>
