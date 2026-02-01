@@ -25,9 +25,18 @@ public class MainActivity extends AppCompatActivity {
 			v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
 			return insets;
 		});
-	}
 
+		    // Connect to login button in xml
+        loginButton = findViewById(R.id.login);
+        // Change screen to Welcome screen when login button pressed
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                login(v);
+            }
+        });
 	}
+	
     //Takes users login information and verifies if it matches the accounts from the credentials.txt file.
 	public void login(View view)
 		//Gets the username and password id's from the XML file.
@@ -36,8 +45,11 @@ public class MainActivity extends AppCompatActivity {
         //verifies credentials and checks to see if it matches the names fromt the credentials.txt file.
 		if (validation.validateCredentials(username, password)) {
 			// if it matches, it shows the user the welcome page.;
-			startActivity(new Intent(MainActivity.this, WelcomeActivity.class));	
-			messageBox.setText("");
+		    messageBox.setText("");
+	        Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);	
+	        intent.putExtra("username", username);
+         	startActivity(intent);
+		
 		} else {
 			// if it fails, it will say that the users credentials do not match and won't change pages.
             messageBox.setText("Login failed, please try again.");
@@ -49,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 		validation.addCredentials(username, password);
 	}
 }
+
 
 
 
