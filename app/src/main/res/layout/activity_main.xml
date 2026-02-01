@@ -3,17 +3,243 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:backgroundTint="#F4FBF8"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+
+    <!--
+    The linear layout encompasses all interactable elements within the login screen
+    The layout is set as vertical to ensure the elements are stacked one after
+        the other in a vertical manner
+    The width is made to match the frame of the mobile screen, while the height is
+        decreased to allow for room for an image or text if desired above the login
+        elements
+    The padding is set to ensure the elements do not begin and end at the edges of the
+        phone's frame
+    -->
+    <LinearLayout
+        android:id="@+id/loginLayout"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:backgroundTint="#F4FBF8"
+        android:orientation="vertical"
+        android:padding="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.991">
 
+        <!--
+        The usernameLabel element is set as bolded, with text of
+        size 16, and is above the username text field to indicate
+        which box it represents
+        -->
+        <TextView
+            android:id="@+id/usernameLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:text="@string/username" />
+
+        <!--
+        The username text field is placed inside a textInputLayout to align
+        with the structuring of the password text field (which enables the
+        password visibility toggle)
+        -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/usernameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <!--
+            The username element is set to be a box of size 48dp, with
+                top and bottom margins to ensure a padding effect and a spacing out
+                between itself and its surrounding vertical elements
+            A hint is present inside the textbox that indicates to users that they
+                have to enter their username within the field
+            The background styling of the text box was created from a separate
+                drawable file which sets the colour, shape, and rounded corners of the
+                rectangular text field
+            The text itself is simply of type "text" because the username does not need
+                to be hidden like the password
+            The text is of size 14sp and is padded on all sides so it does not
+                touch the edges of the text field itself
+            -->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:autofillHints=""
+                android:background="@drawable/editable_text_field_background"
+                android:ems="10"
+                android:hint="@string/enter_your_username"
+                android:inputType="text"
+                android:padding="12sp"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--
+        The passwordLabel element is set as bolded, with text of
+        size 16, and is above the password text field to indicate
+        which box it represents
+        -->
+        <TextView
+            android:id="@+id/passwordLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:text="@string/password" />
+
+        <!--
+         The password text field is placed inside a textInputLayout to
+         provide the ability of the app:passwordToggleEnabled feature,
+         which represents the eye symbol at the right-hand side of the
+         text field and enables users to hide or view their entered
+         password
+         -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true">
+
+            <!--
+            The password element is set to be a box of size 48dp, with a
+                top margin to maintain consistency in the spacing, but
+                no bottom margin to allow the Remember Me checkbox to be
+                closer than other elements
+            A hint is present inside the textbox that indicates to users that they
+                have to enter their password within the field
+            The background styling of the text box was created from a separate
+                drawable file which sets the colour, shape, and rounded corners of the
+                rectangular text field
+            The text itself is of type "textPassword," indicating that information
+                entered is in fact of a password type, and keeping inline with the
+                ability to hide or reveal the entered text
+            The text is of size 14sp and is padded on all sides so it does not
+                touch the edges of the text field itself
+            -->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="12dp"
+                android:autofillHints=""
+                android:background="@drawable/editable_text_field_background"
+                android:ems="10"
+                android:hint="@string/enter_your_password"
+                android:inputType="textPassword"
+                android:padding="12sp"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--
+        The checkbox is set to not have a top margin to again remain
+        close to the password text field
+        -->
+        <CheckBox
+            android:id="@+id/rememberMe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:text="@string/remember_me" />
+
+        <!--
+        The message box text view is meant to allow users to view
+            a message based on their entered username and password
+            (e.g. verifying if the password/username is valid)
+        The text will be italicized and a burgundy colour to stand out
+            from other text
+        -->
+        <TextView
+            android:id="@+id/messageBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10sp"
+            android:text="@string/sample_text"
+            android:textStyle="italic"
+            android:textColor="#6B0002"/>
+
+        <!--
+        A separate layout is created to contain the buttons, to allow
+            the buttons to be set horizontally next to one another
+        -->
+        <LinearLayout
+            android:id="@+id/buttonLayout"
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <!--
+            The cancel button is set to be 100dp wide
+            The start and end margins ensure the spacing between the frame and
+                the adjacent button
+            The background tint of the button matches the text field inputs of username
+                and button. The colour is meant to be less attractive than the login
+                button, so that users are more inclined to log in after entering their info
+            The button's text is set to be centred within the button
+            The padding within the button also ensures centering within the text
+            The button is aligned to the left of the frame
+            -->
+            <Button
+                android:id="@+id/cancelButton"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="15dp"
+                android:layout_weight="1"
+                android:backgroundTint="#CDE8E1"
+                android:gravity="center_horizontal|center_vertical"
+                android:paddingLeft="50dp"
+                android:paddingTop="6dp"
+                android:paddingRight="50dp"
+                android:paddingBottom="6dp"
+                android:text="@string/cancel"
+                android:textColor="#000000"
+                tools:layout_gravity="left" />
+
+            <!--
+            The login button is set to be 100dp wide
+            The start and end margins ensure the spacing between the frame and
+                the adjacent button
+            The background tint of the button is meant to stand out among the other UI elements
+            The button's text is set to be centred within the button
+            The padding within the button also ensures centering within the text
+            The button is aligned to the right of the frame
+            -->
+            <Button
+                android:id="@+id/loginButton"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="#006B5F"
+                android:gravity="center_horizontal|center_vertical"
+                android:paddingLeft="50dp"
+                android:paddingTop="6dp"
+                android:paddingRight="50dp"
+                android:paddingBottom="6dp"
+                android:text="@string/log_in"
+                android:textColor="#FFFFFF"
+                tools:layout_gravity="right" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
