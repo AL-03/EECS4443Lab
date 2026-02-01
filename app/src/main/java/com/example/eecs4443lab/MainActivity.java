@@ -31,11 +31,15 @@ public class MainActivity extends AppCompatActivity {
 		//Gets the username and password id's from the XML file.
 		String username = findViewById(R.id.username).getText().toString();
 		String password = findViewById(R.id.password).toString();
+        TextView messageBox = findViewById(R.id.messageBox)
         //verifies credentials and checks to see if it matches the names fromt the credentials.txt file.
 		if (validation.validateCredentials(username, password)) {
-			// if it matches, it shows the user the welcome page.
+			// if it matches, it shows the user the welcome page.;
+			startActivity(new Intent(MainActivity.this, WelcomeActivity.class));	
+			messageBox.setText("");
 		} else {
 			// if it fails, it will say that the users credentials do not match and won't change pages.
+            messageBox.setText("Login failed, please try again.");
 		}
 	}
 
@@ -44,4 +48,5 @@ public class MainActivity extends AppCompatActivity {
 		validation.addCredentials(username, password);
 	}
 }
+
 
