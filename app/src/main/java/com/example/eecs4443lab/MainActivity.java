@@ -11,6 +11,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
 	Validation validation = new Validation();
+	TextView messageBox = findViewById(R.id.messageBox);
     
 	//Default code for view empty activity android studio template
 	@Override
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		EdgeToEdge.enable(this);
 		setContentView(R.layout.activity_main);
+		messageBox.setText("");
 		ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
 			Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
 			v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -31,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
 		//Gets the username and password id's from the XML file.
 		String username = findViewById(R.id.username).getText().toString();
 		String password = findViewById(R.id.password).toString();
-        TextView messageBox = findViewById(R.id.messageBox)
         //verifies credentials and checks to see if it matches the names fromt the credentials.txt file.
 		if (validation.validateCredentials(username, password)) {
 			// if it matches, it shows the user the welcome page.;
@@ -48,5 +49,6 @@ public class MainActivity extends AppCompatActivity {
 		validation.addCredentials(username, password);
 	}
 }
+
 
 
