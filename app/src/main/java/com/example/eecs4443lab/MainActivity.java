@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
             editor.putBoolean("loggedIn", true);
             editor.putString("username", usernameInput);
             editor.apply();
+		   }
 		    messageBox.setText("");
 	        Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);	
 	        intent.putExtra("username", username);
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 		validation.addCredentials(username, password);
 	}
 }
+
 
 
 
