@@ -26,38 +26,13 @@ public class MainActivity extends AppCompatActivity {
 			return insets;
 		});
 
-		//Checkbox Ids
-        showPasswordCheckbox=findViewById(R.id.showPasswordCheckbox);
-        rememberMeCheckbox=findViewById(R.id.rememberMeCheckBox);
-
-        sharedPreferences=getSharedPreferences("Login Preferences",MODE_PRIVATE);
-
-        boolean loggedIn=sharedPreferences.getBoolean("loggedIn", false);
-
-        //on relaunch, if user is logged in, skip login screen
-        if (loggedIn){
-            String username=sharedPreferences.getString("username","");
-            Intent intent=new Intent(MainActivity.this, WelcomeActivity.class);
-            intent.putExtra("username", username);
-            startActivity(intent);
-            finish();
-        }
-
-        showPassword();
-
-		    // Connect to login button in xml
-        loginButton = findViewById(R.id.login);
-        // Change screen to Welcome screen when login button pressed
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                login(v);
-            }
-        });
+	 
+ 
 	}
 	
     //Takes users login information and verifies if it matches the accounts from the credentials.txt file.
 	public void login(View view)
+	{
 		//Gets the username and password id's from the XML file.
 		String username = findViewById(R.id.username).getText().toString();
 		String password = findViewById(R.id.password).toString();
@@ -78,27 +53,15 @@ public class MainActivity extends AppCompatActivity {
 			// if it fails, it will say that the users credentials do not match and won't change pages.
             messageBox.setText("Login failed, please try again.");
 		}
+	 }
 	}
 
     //Allows a new user to be added to the sytem.
 	public void register(String username, String password) {
 		validation.addCredentials(username, password);
 	}
-
-    private void showPassword(){
-        showPasswordCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            //if user checks show password, password visibility will be set to on
-            if (showPasswordCheckbox.isChecked()){
-                passwordText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-            }
-            //if user unchecks show password, password visibility will be set to off
-            else{
-                passwordText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            }
-            passwordText.setSelection(passwordText.length());
-        });
-    }
 }
+
 
 
 
