@@ -25,9 +25,6 @@ public class MainActivity extends AppCompatActivity {
 			v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
 			return insets;
 		});
-
-	 
- 
 	}
 	
     //Takes users login information and verifies if it matches the accounts from the credentials.txt file.
@@ -61,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 		validation.addCredentials(username, password);
 	}
 }
+
 
 
 
