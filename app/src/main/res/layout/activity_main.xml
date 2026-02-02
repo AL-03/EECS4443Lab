@@ -9,17 +9,9 @@
     tools:context=".MainActivity">
 
 
-    <!--
-    The linear layout encompasses all interactable elements within the login screen
-    The layout is set as vertical to ensure the elements are stacked one after
-        the other in a vertical manner
-    The width is made to match the frame of the mobile screen, while the height is
-        decreased to allow for room for an image or text if desired above the login
-        elements
-    The padding is set to ensure the elements do not begin and end at the edges of the
-        phone's frame
-    -->
 
+    <!-- The image of an android widget was added to be centred at the top of the constraint layout
+    and fill in the empty space before the login UI elements -->
     <ImageView
         android:id="@+id/androidLogo"
         android:layout_width="228dp"
@@ -37,6 +29,17 @@
         app:srcCompat="@drawable/ic_launcher_foreground"
         app:tint="#006B5F" />
 
+
+    <!--
+    The linear layout encompasses all interactable elements within the login screen
+    The layout is set as vertical to ensure the elements are stacked one after
+        the other in a vertical manner
+    The width is made to match the frame of the mobile screen, while the height is
+        decreased to allow for room for an image or text if desired above the login
+        elements
+    The padding is set to ensure the elements do not begin and end at the edges of the
+        phone's frame
+    -->
     <LinearLayout
         android:id="@+id/loginLayout"
         android:layout_width="match_parent"
