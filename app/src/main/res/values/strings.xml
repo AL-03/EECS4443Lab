@@ -5,7 +5,7 @@
     <string name="password">Password:</string>
     <string name="enter_your_password">Enter Your Password</string>
     <string name="remember_me">Remember Me</string>
-    <string name="sample_text">sample text</string>
     <string name="cancel">Cancel</string>
     <string name="log_in">Log In</string>
+    <string name="icon_showcasing_the_android_logo">Icon showcasing the android logo</string>
 </resources>

@@ -19,6 +19,24 @@
     The padding is set to ensure the elements do not begin and end at the edges of the
         phone's frame
     -->
+
+    <ImageView
+        android:id="@+id/androidLogo"
+        android:layout_width="228dp"
+        android:layout_height="154dp"
+
+        android:contentDescription="@string/icon_showcasing_the_android_logo"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/loginLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/main"
+        app:layout_constraintVertical_bias="0.9"
+        app:srcCompat="@drawable/ic_launcher_foreground"
+        app:tint="#006B5F" />
+
     <LinearLayout
         android:id="@+id/loginLayout"
         android:layout_width="match_parent"
@@ -83,7 +101,9 @@
                 android:hint="@string/enter_your_username"
                 android:inputType="text"
                 android:padding="12sp"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!--
@@ -152,7 +172,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
-            android:text="@string/remember_me" />
+            android:text="@string/remember_me"
+
+            />
 
         <!--
         The message box text view is meant to allow users to view
@@ -166,7 +188,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10sp"
-            android:text="@string/sample_text"
+            android:text=""
             android:textStyle="italic"
             android:textColor="#6B0002"/>
 
@@ -209,7 +231,8 @@
                 android:paddingBottom="6dp"
                 android:text="@string/cancel"
                 android:textColor="#000000"
-                tools:layout_gravity="left" />
+                tools:layout_gravity="left"
+                />
 
             <!--
             The login button is set to be 100dp wide
@@ -236,7 +259,8 @@
                 android:paddingBottom="6dp"
                 android:text="@string/log_in"
                 android:textColor="#FFFFFF"
-                tools:layout_gravity="right" />
+                tools:layout_gravity="right"
+                />
 
         </LinearLayout>
 
