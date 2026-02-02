@@ -3,19 +3,25 @@ package com.example.eecs4443lab;
 import android.content.Context;
 import java.io.*;
 import java.util.HashMap;
+import android.content.res.AssetManager;
 
 //Validates Log in Credentials.
 public class Validation {
 
 	//Hashmap for storing registered users and buffered reader for reading the credentials.txt file.
 	HashMap<String, String> registeredUsers = new HashMap<>();
+
+
     BufferedReader bf;
     {
+
         try {
             bf = new BufferedReader(new FileReader("app/src/main/assets/credentials.txt"));
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+
     }
 
     //reads each line from the credentials.txt file and adds the usernames and passwords to the registeredUsers hashmap.
@@ -40,10 +46,9 @@ public class Validation {
 	}
 
 	//Makes sures that credentials provided by the user are not empty and actually match a username and password assosciated to it from the registered useres hashmap.
-	public boolean validateCredentials(String username, String password)
-	{   
-		return !username.isEmpty() && !password.isEmpty() && registeredUsers.containsKey(username) && registeredUsers.get(username).equals(password);
-	}
+    public boolean validateCredentials(String username, String password) {
+        return !username.isEmpty() && !password.isEmpty() && registeredUsers.containsKey(username) && registeredUsers.get(username).equals(password);
+    }
 
 }
 

@@ -17,17 +17,20 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextInputEditText username;
     private TextInputEditText password;
-    Validation validation = new Validation();
-    TextView messageBox = findViewById(R.id.messageBox);
+    //Validation validation = new Validation();
+    TextView messageBox;
     private SharedPreferences sharedPreferences;
 
     //Default code for view empty activity android studio template
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
@@ -36,9 +39,10 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        messageBox = findViewById(R.id.messageBox);
 
         // Make message blank
-        messageBox.setText("");
+        messageBox.setText(" ");
 
         // Access username and password TextInputEditText fields from xml
         username = findViewById(R.id.username);
@@ -70,12 +74,14 @@ public class MainActivity extends AppCompatActivity {
     //Takes users login information and verifies if it matches the accounts from the credentials.txt file.
     public void login(View view) {
         //Gets the username and password id's from the XML file.
+
+
         String usernameStr = username.getText().toString();
-        String passStr = findViewById(R.id.password).toString();
+        String passStr = password.getText().toString();
         //Get remember me textbox from xml
         CheckBox rememberMeCheckbox = findViewById(R.id.rememberMe);
         //verifies credentials and checks to see if it matches the names from the credentials.txt file.
-        if (validation.validateCredentials(usernameStr, passStr)) {
+        if (validateCredentials(usernameStr, passStr)) {
             // if it matches, it shows the user the welcome page. Additionally, if the remember me checkbox is checked, it will save users credentials;
             if (rememberMeCheckbox.isChecked()) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -87,12 +93,19 @@ public class MainActivity extends AppCompatActivity {
 //            Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
 //            intent.putExtra("username", username);
 //            startActivity(intent);
-        } else {
+        }
+        else {
             // if it fails, it will say that the users credentials do not match and won't change pages.
             messageBox.setText("Login failed, please try again.");
         }
     }
+    public boolean validateCredentials(String username, String password)
+    {
+        return (!username.isEmpty() && !password.isEmpty() && username.equals("anna24") && password.equals("abc123"));
+    }
 }
+
+
 
 //UNFINISHED (bonus task): Allows a new user to be added to the system.
 //public void register(String username, String password) {
