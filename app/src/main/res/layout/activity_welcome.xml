@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CDE8E1"
+    tools:context=".WelcomeActivity">
+
+
+    <!--
+    TextView object added to welcome the user
+    The text is padded and centered to ensure that even if the
+    username is incredibly long, it will not change the way in which
+    the message is displayed to the user
+    -->
+    <TextView
+        android:id="@+id/welcomeMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="12sp"
+        android:gravity="center"
+        android:text=""
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <!--
+    The image on the bottom has been set to echo the widget
+    in the login screen and add a cohesive look to the overall
+    application flow
+    -->
+    <ImageView
+        android:id="@+id/androidLogo"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:contentDescription="@string/android_icon_at_the_bottom_of_the_screen"
+        android:paddingTop="165dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeMsg"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ic_launcher_foreground"
+        app:tint="#006B5F" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

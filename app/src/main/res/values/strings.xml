@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">EECS4443Lab</string>
+    <!-- Welcome message text -->
+    <string name="welcome_msg">Welcome, %s!</string>
+    <string name="android_icon_at_the_bottom_of_the_screen">Android icon at the bottom of the screen</string>
     <string name="enter_your_username">Enter Your Username</string>
     <string name="username">Username:</string>
     <string name="password">Password:</string>

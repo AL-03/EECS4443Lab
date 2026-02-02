@@ -25,11 +25,11 @@ public class MainActivity extends AppCompatActivity {
     private TextInputEditText username;
     private TextInputEditText password;
     TextView messageBox;
+    private Button loginButton;
     private Button cancelButton;
     private CheckBox rememberMe;
     private SharedPreferences sharedPreferences;
     
-
     //Default code for view empty activity android studio template
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +41,15 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
       
         // Access username and password TextInputEditText fields from xml
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         //Failure/success message
         messageBox = findViewById(R.id.messageBox);
+        // Connect to login button in xml
+        loginButton = findViewById(R.id.login);
         // Connect to cancel button in xml
         cancelButton = findViewById(R.id.cancelButton);
         rememberMe=findViewById(R.id.rememberMe);
@@ -79,13 +82,13 @@ public class MainActivity extends AppCompatActivity {
         boolean loggedIn=sharedPreferences.getBoolean("loggedIn", false);
 
         //NEEDS WELCOME PAGE: on relaunch, if user is logged in, skip login screen
-//         if (loggedIn){
-//             String username=sharedPreferences.getString("username","");
-//             Intent intent=new Intent(MainActivity.this, WelcomeActivity.class);
-//             intent.putExtra("username", username);
-//             startActivity(intent);
-//             finish();
-//         }
+        if (loggedIn){
+            String username=sharedPreferences.getString("username","");
+            Intent intent=new Intent(MainActivity.this, WelcomeActivity.class);
+            intent.putExtra("username", username);
+            startActivity(intent);
+            finish();
+        }
     }
 
     //Takes users login information and verifies if it matches the accounts from the credentials.txt file.
@@ -107,9 +110,9 @@ public class MainActivity extends AppCompatActivity {
                 editor.apply();
             }
             messageBox.setText("");
-//            Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
-//            intent.putExtra("username", username);
-//            startActivity(intent);
+            Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
+            intent.putExtra("username", usernameStr);
+            startActivity(intent);
         }
         else {
             // if it fails, it will say that the users credentials do not match and won't change pages.
