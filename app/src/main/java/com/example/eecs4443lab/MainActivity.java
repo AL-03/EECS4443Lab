@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         //Failure/success message
         messageBox = findViewById(R.id.messageBox);
         // Connect to login button in xml
-        loginButton = findViewById(R.id.login);
+        loginButton = findViewById(R.id.loginButton);
         // Connect to cancel button in xml
         cancelButton = findViewById(R.id.cancelButton);
         rememberMe=findViewById(R.id.rememberMe);
@@ -68,8 +68,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Connect to login button in xml
-        Button loginButton = findViewById(R.id.loginButton);
         // Change screen to Welcome screen when login button pressed
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences=getSharedPreferences("Login Preferences",MODE_PRIVATE);
         boolean loggedIn=sharedPreferences.getBoolean("loggedIn", false);
 
-        //NEEDS WELCOME PAGE: on relaunch, if user is logged in, skip login screen
+        // On relaunch, if user is logged in, skip login screen
         if (loggedIn){
             String username=sharedPreferences.getString("username","");
             Intent intent=new Intent(MainActivity.this, WelcomeActivity.class);
@@ -94,8 +92,6 @@ public class MainActivity extends AppCompatActivity {
     //Takes users login information and verifies if it matches the accounts from the credentials.txt file.
     public void login(View view) {
         //Gets the username and password id's from the XML file.
-
-
         String usernameStr = username.getText().toString();
         String passStr = password.getText().toString();
         //Get remember me textbox from xml
