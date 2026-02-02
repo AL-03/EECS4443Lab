@@ -1,5 +1,6 @@
 package com.example.eecs4443lab;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,17 +19,16 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.util.Objects;
-
 public class MainActivity extends AppCompatActivity {
 
     private TextInputEditText username;
     private TextInputEditText password;
-    TextView messageBox;
+    private TextView messageBox;
     private Button loginButton;
     private Button cancelButton;
     private CheckBox rememberMe;
     private SharedPreferences sharedPreferences;
+    Validation validation;
     
     //Default code for view empty activity android studio template
     @Override
@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         // Connect to cancel button in xml
         cancelButton = findViewById(R.id.cancelButton);
         rememberMe=findViewById(R.id.rememberMe);
+        // Create Validation object
+        validation = new Validation(this);
 
         // Make message blank
         messageBox.setText(" ");
@@ -94,12 +96,10 @@ public class MainActivity extends AppCompatActivity {
         //Gets the username and password id's from the XML file.
         String usernameStr = username.getText().toString();
         String passStr = password.getText().toString();
-        //Get remember me textbox from xml
-        CheckBox rememberMeCheckbox = findViewById(R.id.rememberMe);
         //verifies credentials and checks to see if it matches the names from the credentials.txt file.
-        if (validateCredentials(usernameStr, passStr)) {
+        if (validation.validateCredentials(usernameStr, passStr)) {
             // if it matches, it shows the user the welcome page. Additionally, if the remember me checkbox is checked, it will save users credentials;
-            if (rememberMeCheckbox.isChecked()) {
+            if (rememberMe.isChecked()) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean("loggedIn", true);
                 editor.putString("username", usernameStr);
@@ -115,15 +115,4 @@ public class MainActivity extends AppCompatActivity {
             messageBox.setText("Login failed, please try again.");
         }
     }
-    public boolean validateCredentials(String username, String password)
-    {
-        return (!username.isEmpty() && !password.isEmpty() && username.equals("anna24") && password.equals("abc123"));
-    }
 }
-
-
-
-//UNFINISHED (bonus task): Allows a new user to be added to the system.
-//public void register(String username, String password) {
-//	validation.addCredentials(username, password);
-//}
