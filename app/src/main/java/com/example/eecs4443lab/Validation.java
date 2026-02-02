@@ -1,3 +1,5 @@
+package com.example.eecs4443lab;
+
 import android.content.Context;
 import java.io.*;
 import java.util.HashMap;
@@ -7,15 +9,27 @@ public class Validation {
 
 	//Hashmap for storing registered users and buffered reader for reading the credentials.txt file.
 	HashMap<String, String> registeredUsers = new HashMap<>();
-    BufferedReader bf = new BufferedReader(new File("app/src/main/assets/credentials.txt)); 
+    BufferedReader bf;
+    {
+        try {
+            bf = new BufferedReader(new FileReader("app/src/main/assets/credentials.txt"));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-	//reads each line from the credentials.txt file and adds the usernames and passwords to the registeredUsers hashmap.
+    //reads each line from the credentials.txt file and adds the usernames and passwords to the registeredUsers hashmap.
     public Validation()
     {
         for(int i = 0; i < 100; i++)
         {
-           String line = bf.readLine();
-           registeredUsers.put(line.substring(0, line.indexOf(":")), line.substring(line.indexOf(":") +  1, line.length()));
+            String line = null;
+            try {
+                line = bf.readLine();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            registeredUsers.put(line.substring(0, line.indexOf(":")), line.substring(line.indexOf(":") +  1, line.length()));
         }
 	}
 
