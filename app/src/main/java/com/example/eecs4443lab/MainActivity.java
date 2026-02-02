@@ -8,6 +8,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.TextView;
+import android.text.InputType;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.activity.EdgeToEdge;
@@ -23,14 +24,15 @@ public class MainActivity extends AppCompatActivity {
 
     private TextInputEditText username;
     private TextInputEditText password;
-    //Validation validation = new Validation();
     TextView messageBox;
+    private Button cancelButton;
+    private CheckBox rememberMe;
     private SharedPreferences sharedPreferences;
+    
 
     //Default code for view empty activity android studio template
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
@@ -39,17 +41,20 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+      
+        // Access username and password TextInputEditText fields from xml
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
+        //Failure/success message
         messageBox = findViewById(R.id.messageBox);
+        // Connect to cancel button in xml
+        cancelButton = findViewById(R.id.cancelButton);
+        rememberMe=findViewById(R.id.rememberMe);
 
         // Make message blank
         messageBox.setText(" ");
 
-        // Access username and password TextInputEditText fields from xml
-        username = findViewById(R.id.username);
-        password = findViewById(R.id.password);
-
-        // Connect to cancel button in xml
-        Button cancelButton = findViewById(R.id.cancelButton);
+        
         // When user presses cancel, clear the inputted text
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +74,18 @@ public class MainActivity extends AppCompatActivity {
                 login(v);
             }
         });
+      
+        sharedPreferences=getSharedPreferences("Login Preferences",MODE_PRIVATE);
+        boolean loggedIn=sharedPreferences.getBoolean("loggedIn", false);
+
+        //NEEDS WELCOME PAGE: on relaunch, if user is logged in, skip login screen
+//         if (loggedIn){
+//             String username=sharedPreferences.getString("username","");
+//             Intent intent=new Intent(MainActivity.this, WelcomeActivity.class);
+//             intent.putExtra("username", username);
+//             startActivity(intent);
+//             finish();
+//         }
     }
 
     //Takes users login information and verifies if it matches the accounts from the credentials.txt file.
