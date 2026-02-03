@@ -37,4 +37,5 @@ https://www.figma.com/proto/tNL9GPWUxWhB4Grjm3NACB/Untitled?node-id=1-2&p=f&t=0A
 
 ## Limitations:
 Due to time constraints, we could not complete the bonus task of the register screen.
+In terms of obstacles, we faced an error when originally merging the project that we were unfamiliar with. We spent time troubleshooting the issue until eventually we managed to create a successful build that did not crash. 
 
